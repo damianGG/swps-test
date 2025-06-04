@@ -1,13 +1,18 @@
 import { NextResponse } from "next/server"
 
+const JOOMLA_BASE_URL = process.env.JOOMLA_API_BASE_URL ??
+  "https://test-www0.swps.pl/api/index.php/v1"
+const JOOMLA_BEARER = process.env.JOOMLA_API_BEARER ?? ""
+const CF_CLIENT_ID = process.env.CF_ACCESS_CLIENT_ID ?? ""
+const CF_CLIENT_SECRET = process.env.CF_ACCESS_CLIENT_SECRET ?? ""
+
 export async function GET() {
   try {
-    const response = await fetch("https://test-www0.swps.pl/api/index.php/v1/content/articles", {
+    const response = await fetch(`${JOOMLA_BASE_URL}/content/articles`, {
       headers: {
-        Authorization:
-          "Bearer c2hhMjU2Ojg1Njo4NGRhNzY1MzkxYzYwNTVjODk4NDM0NmFmZGJhOWNmMDRlNjFiMjc2NDM4MDljYmJkMTUwNjk0MGNjZGJjODJk",
-        "CF-Access-Client-Id": "201b0dc1f065b62c3478598df5a75934.access",
-        "CF-Access-Client-Secret": "c7b14b4a29f585013b8eb8d92874f27de6a4daac4f8d19263b1ce37074a1ab49",
+        ...(JOOMLA_BEARER && { Authorization: `Bearer ${JOOMLA_BEARER}` }),
+        ...(CF_CLIENT_ID && { "CF-Access-Client-Id": CF_CLIENT_ID }),
+        ...(CF_CLIENT_SECRET && { "CF-Access-Client-Secret": CF_CLIENT_SECRET }),
         "Content-Type": "application/json",
         Accept: "application/json",
       },
