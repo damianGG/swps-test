@@ -157,7 +157,7 @@ const menuData = {
 
 export default function SWPSMenu() {
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <header className="container mx-auto sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
             <div className="container flex h-16 items-center">
                 {/* Mobile Menu */}
                 <Sheet>
