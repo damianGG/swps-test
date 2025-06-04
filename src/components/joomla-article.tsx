@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { CalendarDays, Eye, User } from "lucide-react"
-import { fetchJoomlaArticle, type JoomlaArticle } from "@/lib/joomla-api"
+import type { JoomlaArticle } from "@/lib/joomla-api"
 import { ImageGallery } from "./image-gallery"
 import { ArticleTags } from "./article-tags"
 
@@ -22,7 +22,9 @@ export function JoomlaArticleComponent({ articleId }: JoomlaArticleProps) {
     async function loadArticle() {
       try {
         setLoading(true)
-        const data = await fetchJoomlaArticle(articleId)
+        const res = await fetch(`/api/articles/${articleId}`)
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const data: JoomlaArticle = await res.json()
         setArticle(data)
       } catch (err) {
         setError(err instanceof Error ? err.message : "Wystąpił błąd podczas ładowania artykułu")
