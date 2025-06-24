@@ -13,7 +13,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'test-www0.swps.pl',
         port: '',
-        pathname: '/images/**',
+        pathname: '/**',
       },
     ],
   },

@@ -7,6 +7,8 @@ import { JoomlaArticleComponent } from "@/components/joomla-article"
 import ArticlesGrid from "@/components/articles-grid"
 import { ArticlesLoading } from "@/components/articles-loading"
 import { Suspense } from "react"
+import ArticleViewer from "@/components/article-viewer"
+import ArticlesList from "@/components/articles-list"
 
 export default function Page() {
   return (
@@ -20,14 +22,17 @@ export default function Page() {
             Uniwersytet SWPS to miejsce, gdzie tradycja akademicka spotyka się z nowoczesnością. Oferujemy wysokiej
             jakości edukację, która przygotowuje do wyzwań współczesnego świata.
           </p>
-          <div className="container mx-auto">
+          {/* <div className="container mx-auto">
             <JoomlaArticleComponent articleId="5" />
           </div>
           <div className="container mx-auto px-4 py-12">
             <Suspense fallback={<ArticlesLoading />}>
               <ArticlesGrid />
             </Suspense>
-          </div>
+          </div> */}
+
+          <ArticleViewer />
+          <ArticlesList />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             <div className="p-6 bg-white rounded-lg shadow-lg">
